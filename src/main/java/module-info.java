@@ -10,6 +10,7 @@ module example.cominheritanceexample.inheritanceexample {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires javafx.media;
 
     opens example.cominheritanceexample.inheritanceexample to javafx.fxml;
     exports example.cominheritanceexample.inheritanceexample;

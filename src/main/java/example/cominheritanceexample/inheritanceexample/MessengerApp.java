@@ -49,7 +49,6 @@ public class MessengerApp extends Application {
     private final Button sendFileButton = new Button("Send File");
     private final Button chatButton = new Button("Add Chat");
     private final Button userButton = new Button("Add User");
-    private final Button editMessageButton = new Button("Edit Message");
 
 
     private void getUsersForSelectedChat() throws Exception {
@@ -109,7 +108,7 @@ public class MessengerApp extends Application {
 
     private void addUser() throws Exception {
         if (selectedChat == null) {
-            showAlert("Please select a chat to join", Alert.AlertType.WARNING);
+            showAlert("Please select a chats to join", Alert.AlertType.WARNING);
             return;
         }
         for (User user : userListView.getItems()) {
@@ -131,15 +130,6 @@ public class MessengerApp extends Application {
                 sendMessage(new TextMessage(inputField.getText(), selectedUser));
             } catch (Exception e) {
                 showAlert("An error occurred: " + e, Alert.AlertType.ERROR);
-            }
-        });
-        //optonal
-        editMessageButton.setOnAction(_ -> {
-            BaseMessage selectedMessage = messageListView.getSelectionModel().getSelectedItem();
-            if (selectedMessage != null) {
-                enableEditing(selectedMessage);
-            } else {
-                showAlert("Please select a message to edit.", Alert.AlertType.WARNING);
             }
         });
 
@@ -332,7 +322,7 @@ public class MessengerApp extends Application {
         initViews();
         initButtons();
 
-        HBox inputBox = new HBox(inputField, sendTextButton, sendVoiceButton, sendImageButton, sendLocationButton, sendContactButton, sendFileButton, editMessageButton);
+        HBox inputBox = new HBox(inputField, sendTextButton, sendVoiceButton, sendImageButton, sendLocationButton, sendContactButton, sendFileButton);
         inputBox.setSpacing(10);
         inputBox.setAlignment(Pos.CENTER);
         VBox chatBox = new VBox(new Label("Chats"), chatListView, chatButton, chatField);
@@ -346,7 +336,7 @@ public class MessengerApp extends Application {
         root.setCenter(centerPane);
         root.setBottom(new VBox(messageArea, inputBox));
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 800, 400);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Messenger App");
         primaryStage.show();
